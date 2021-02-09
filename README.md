@@ -5,3 +5,6 @@ Conjunto de todas as palavras sobre o alfabeto Σ = {a,b,c} que não possui o s�
 
 `lista2_3b.jff`  
 Conjunto de todas as palavras sobre o alfabeto Σ = {a,b,c} que possuem aab ou bba como subpalavra.
+
+## Made With
+[JFLAP](http://www.jflap.org/)
