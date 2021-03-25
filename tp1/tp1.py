@@ -25,7 +25,7 @@ dfa = {
     5:{'p':4}
 }
 
-def accepts(s,output=None):
+def sread(s,output=None):
     initial = 0
     accepting = {5}
     indefinition = False
@@ -65,18 +65,18 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if not (args.string or args.file or args.output):
-        parser.error('No action requested')
+        parser.error('Nenhuma acao requisitada')
 
     print('ER = 5(7p+8a)\u207A7\n')
 
     if args.file:
         strings = args.file.read().splitlines()
         for s in strings:
-            accepts(s,args.output) if args.output else accepts(s)
+            sread(s,args.output) if args.output else sread(s)
         args.file.close()
 
     if args.string:
-        accepts(args.string)
+        sread(args.string)
 
     if args.output:
         args.output.close()
