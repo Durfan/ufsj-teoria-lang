@@ -30,9 +30,11 @@ def str_read(s,output=None):
     initial = 0
     accepting = {5}
     indefinition = False
+    path = ''
 
     state = initial
     for index,c in enumerate(s):
+        path += '{}({})\u2192'.format(str(state),c)
         try:
             state = DFA[state][c]
             q = state
@@ -45,10 +47,13 @@ def str_read(s,output=None):
     not_final = q not in accepting
 
     if indefinition:
+        path += 'I'
         result = '-I : {}'.format(cursor)
     elif not_final:
+        path += '{}'.format(q)
         result = '-{} : {}'.format(q,s)
     else:
+        path += 'F'
         result = '+A : {}'.format(s)
 
     if indefinition or not_final:
@@ -59,7 +64,7 @@ def str_read(s,output=None):
     if output:
         output.write(result + '\n')
 
-    return state in accepting
+    return path
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='UFSJ/T.Linguagens TP1')
@@ -88,7 +93,8 @@ if __name__ == '__main__':
         args.file.close()
 
     if args.str:
-        str_read(args.str)
+        path = str_read(args.str)
+        print(path)
 
     if args.out:
         args.out.close()
