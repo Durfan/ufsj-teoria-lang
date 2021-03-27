@@ -8,18 +8,18 @@ Máquinas de Estados Finitos: autômatos finitos determinísticos e não-determi
 
 ## Conteúdo Programático
 
-* Introdução e conceitos básicos de teoria de conjuntos
-* Linguagens regulares
-* Gramáticas Regulares
-* Autômatos Finitos
-* Expressões Regulares
-* Propriedades das Linguagens Regulares
-* Autômato finito com saída
-* Linguagens Livres de contexto
-* Simplificação de gramáticas livres de contexto
-* Autômatos com pilha
-* Propriedades das linguagens livres de contexto
-* Linguagens Sensíveis ao contexto
-* Linguagens recursivamente enumeráveis e sensíveis ao contexto
-* Máquina de Turing
-* Hierarquia de Chomsky
+1. Introdução e conceitos básicos de teoria de conjuntos
+1. Linguagens regulares
+1. Gramáticas Regulares
+1. Autômatos Finitos
+1. Expressões Regulares
+1. Propriedades das Linguagens Regulares
+1. Autômato finito com saída
+1. Linguagens Livres de contexto
+1. Simplificação de gramáticas livres de contexto
+1. Autômatos com pilha
+1. Propriedades das linguagens livres de contexto
+1. Linguagens Sensíveis ao contexto
+1. Linguagens recursivamente enumeráveis e sensíveis ao contexto
+1. Máquina de Turing
+1. Hierarquia de Chomsky
