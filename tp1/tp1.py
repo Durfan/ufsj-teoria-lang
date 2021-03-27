@@ -1,22 +1,12 @@
 #!/usr/bin/python3
 
+import sys
 import argparse
-import sys, timeit
+import timeit
 
-start_time = timeit.default_timer()
+START_TIME = timeit.default_timer()
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-dfa = {
+DFA = {
     0:{'5':1},
     1:{'7':2, '8':3},
     2:{'p':4},
@@ -25,7 +15,18 @@ dfa = {
     5:{'p':4}
 }
 
-def sread(s,out=None):
+class BColors:
+    HEADER  = '\033[95m'
+    OKBLUE  = '\033[94m'
+    OKCYAN  = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL    = '\033[91m'
+    ENDC    = '\033[0m'
+    BOLD    = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def str_read(s,output=None):
     initial = 0
     accepting = {5}
     indefinition = False
@@ -33,7 +34,7 @@ def sread(s,out=None):
     state = initial
     for index,c in enumerate(s):
         try:
-            state = dfa[state][c]
+            state = DFA[state][c]
             q = state
         except KeyError:
             cursor = s[:index] + '[' + c +']' + s[index+1:]
@@ -41,18 +42,22 @@ def sread(s,out=None):
             state = False
             break
 
+    not_final = q not in accepting
+
     if indefinition:
         result = '-I : {}'.format(cursor)
-        print(bcolors.FAIL + result + bcolors.ENDC)
-        out.write(result + '\n') if out else None
-    elif q not in accepting:
+    elif not_final:
         result = '-{} : {}'.format(q,s)
-        print(bcolors.FAIL + result + bcolors.ENDC)
-        out.write(result + '\n') if out else None
     else:
         result = '+A : {}'.format(s)
-        print(bcolors.OKGREEN + result + bcolors.ENDC)
-        out.write(result + '\n') if out else None
+
+    if indefinition or not_final:
+        print(BColors.FAIL + result + BColors.ENDC)
+    else:
+        print(BColors.OKGREEN + result + BColors.ENDC)
+
+    if output:
+        output.write(result + '\n')
 
     return state in accepting
 
@@ -79,18 +84,18 @@ if __name__ == '__main__':
     if args.file:
         strings = args.file.read().splitlines()
         for s in strings:
-            sread(s,args.out) if args.out else sread(s)
+            str_read(s,args.out) if args.out else str_read(s)
         args.file.close()
 
     if args.str:
-        sread(args.str)
+        str_read(args.str)
 
     if args.out:
         args.out.close()
 
     if args.legend:
         stop_time = timeit.default_timer()
-        execution_time = round(stop_time - start_time,4)
+        execution_time = round(stop_time - START_TIME,4)
         print('+A : Aceito')
         print('-I : Rejeitado (Indefinido)')
         print('-# : Rejeitado (Estado nao final)')
