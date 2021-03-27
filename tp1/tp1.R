@@ -1,4 +1,4 @@
-# Deploy feito em https://pcecilio.shinyapps.io/atv1a/
+# Deploy feito em https://pcecilio.shinyapps.io/tlang_tp1/
 if (!require('shiny')) install.packages('shiny')
 library(shiny)
 
