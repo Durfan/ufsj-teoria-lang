@@ -1,6 +1,6 @@
 # ERE Teoria de Linguagens
 
-Repositório contendo práticas, exercícios e trabalhos da disciplina de Teoria de Linguagens da UFSJ (periodo emergencial).
+Repositório contendo práticas, exercícios e trabalhos na disciplina de Teoria de Linguagens da UFSJ (periodo emergencial).
 
 ## Ementa da disciplina
 
