@@ -77,11 +77,14 @@ if __name__ == '__main__':
         help='arquivo de saida')
     parser.add_argument('-l','--legend',
         action="store_true",
-        help='mostrar leganda')
+        help='mostrar legenda')
     args = parser.parse_args()
 
     if not (args.str or args.file or args.out):
         parser.print_help()
+        sys.exit(1)
+    elif not (args.str or args.file) and args.out:
+        parser.error('Nenhuma entrada estipulada')
         sys.exit(1)
 
     print('ER = 5(7p+8a)\u207A7')
@@ -93,7 +96,7 @@ if __name__ == '__main__':
         args.file.close()
 
     if args.str:
-        path = str_read(args.str)
+        path = str_read(args.str,args.out) if args.out else str_read(args.str)
         print(path)
 
     if args.out:
